@@ -1,0 +1,5 @@
+.history/
+.docker/zsh/history/.zsh_history
+node_modules/
+tsconfig.tsbuildinfo
+docker-compose.override.yml
