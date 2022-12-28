@@ -5,9 +5,14 @@ import { UniqueEntityId } from "../../../../shared/domain/value-object/unique-en
 import { Category } from "./category";
 
 describe("Category Unit Tests", () => {
+  beforeEach(() => {
+    Category.validate = jest.fn();
+  });
+
   it("constructor of category", () => {
     let category = new Category({ name: "Movie" });
     let props = omit(category.props, "createdAt");
+    expect(Category.validate).toHaveBeenCalled();
     expect(props).toStrictEqual({
       name: "Movie",
       description: null,
@@ -144,7 +149,7 @@ describe("Category Unit Tests", () => {
     });
 
     category.update("New Movie", "New Movie Description");
-
+    expect(Category.validate).toHaveBeenCalledTimes(2);
     expect(category.props).toStrictEqual({
       name: "New Movie",
       description: "New Movie Description",
