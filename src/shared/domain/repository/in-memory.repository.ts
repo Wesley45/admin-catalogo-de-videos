@@ -1,3 +1,4 @@
+import { Entity } from "../entity/entity";
 import { UniqueEntityId } from "../value-object/unique-entity-id";
 import {
   RepositoryInterface,
@@ -44,7 +45,7 @@ export abstract class InMemoryRepository<T> implements RepositoryInterface<T> {
   }
 }
 
-export abstract class InMemorySearchableRepository<T>
+export abstract class InMemorySearchableRepository<T extends Entity>
   extends InMemoryRepository<T>
   implements SearchableRepositoryInterface<T>
 {

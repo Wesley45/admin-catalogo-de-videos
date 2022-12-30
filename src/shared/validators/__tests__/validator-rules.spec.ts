@@ -35,6 +35,7 @@ function runRule({
 }: Omit<ExpectedRule, "error">) {
   const validator = ValidatorRules.values(value, property);
   const method = validator[rule];
+  // @ts-ignore
   method.apply(validator, params);
 }
 

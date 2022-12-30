@@ -1,3 +1,4 @@
+import { Entity } from "../entity/entity";
 import { UniqueEntityId } from "../value-object/unique-entity-id";
 
 export interface RepositoryInterface<T> {
@@ -30,6 +31,7 @@ export class SearchParams<Filter = string> {
     this.perPage = props.per_page;
     this.sort = props.sort;
     this.sortDir = props.sort_dir;
+    // @ts-ignore
     this.filter = props.filter;
   }
 
@@ -110,7 +112,7 @@ type SearchResultProps<T, Filter> = {
   filter: Filter | null;
 };
 
-export class SearchResult<T, Filter = string> {
+export class SearchResult<T extends Entity = Entity, Filter = string> {
   readonly items: T[];
   readonly total: number;
   readonly currentPage: number;
@@ -149,6 +151,7 @@ export interface SearchableRepositoryInterface<
   T,
   Filter = string,
   InputSearchParams = SearchParams,
+  // @ts-ignore
   OutputSearchResult = SearchResult<T, Filter>
 > extends RepositoryInterface<T> {
   sortableFields: string[];

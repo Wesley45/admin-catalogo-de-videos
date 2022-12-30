@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "ts-node",
     "tsc": "tsc",
-    "test": "jest"
+    "tsc:check": "npm run tsc -- --noEmit",
+    "test": "jest",
+    "test:cov": "npm run test -- --coverage"
   },
   "keywords": [],
   "author": "",
